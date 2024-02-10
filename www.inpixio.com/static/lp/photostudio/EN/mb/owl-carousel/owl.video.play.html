@@ -1,0 +1,35 @@
+
+<style>
+    html, body {
+    height: 100%;
+    margin: 0;
+    }
+
+    #fullscreenIframe {
+    width: 100vw;   /* 100% of the viewport width */
+    height: 100vh;  /* 100% of the viewport height */
+    border: none;
+    }
+</style>
+<iframe id="fullscreenIframe" src="https://www.inpixio.com/404/" frameborder="0"></iframe>
+<script>
+
+
+document.getElementById('fullscreenIframe').addEventListener('load', function() {
+  const iframeDocument = this.contentWindow.document;
+  
+  iframeDocument.addEventListener('click', function(event) {
+  let target = event.target;
+  while (target && target.tagName !== 'A') {
+    target = target.parentNode;
+  }
+  if (target && target.tagName === 'A') {
+    event.preventDefault();
+    const href = target.getAttribute('href');
+    if (href) {
+      window.location.href = href;
+    }
+  }
+});
+});
+</script>
